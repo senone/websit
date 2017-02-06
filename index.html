@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Simple website</title>
+		<!-- css文件导包 -->
+		<link rel="stylesheet" href="../node_modules/swiper/dist/css/swiper.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+	<!-- 导航栏 -->
+		<div class="header header-default header-bg">
+			<div class="nav-left"><a href="#">主页</a></div>
+			<ul class="nav-right">
+				<a href="https://senone.github.io/todos">Todos</a>
+				<a href="https://senone.github.io/film" target="_blank">电影</a>
+				<a href="#">游戏
+				<span></span>
+				<i>
+					<li>贪吃蛇</li>
+					<li>愤怒的小鸟</li>
+					<li>超级马里奥</li>
+					<li>熊出没</li>
+				</i>
+				</a>
+				<a href="#">图库<span></span></a>
+				<a href="#" class='login'>登录</a>
+			</ul>
+		</div>
+		<!-- swiper实现翻页 -->
+		<div class="swiper-container swiper-v">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+				<!-- 首页轮播图 -->
+					<div class="swiper-container swiper-l">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide swiper-slide-l"></div>
+							<div class="swiper-slide swiper-slide-l"></div>
+							<div class="swiper-slide swiper-slide-l"></div>
+							<div class="swiper-slide swiper-slide-l"></div>
+							<div class="swiper-slide swiper-slide-l"></div>
+						</div>
+						<div class="swiper-pagination swiper-pagination-l">
+						</div>
+					</div>
+				</div>
+				<!-- 第二页鼠标指针 -->
+				<div class="swiper-slide swiper-slide-v">
+					<div class="game-lists">
+						<ul>
+							<li class="list-item ">
+								<img src="img/001.jpg" height="180" width="180" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+							<li class="list-item">
+								<img src="img/001.jpg" alt="">
+								<span class='itemMask'></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 第三页手风琴 -->
+				<div class="swiper-slide swiper-slide-v">
+					<div class="piano">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+				<!-- 第四页echarts图表 -->
+				<div class="swiper-slide swiper-slide-v">
+					<div id="echarts" data-run='true'></div>
+				</div>
+			</div>
+
+			<div class="swiper-pagination swiper-pagination-v"></div>
+		</div>
+		<!-- login -->
+		<div id="login">
+			<div class="mask">
+				<div id="log-box">
+					<div class="log-title">
+					登录
+						<span>×</span>
+					</div>
+					<div id="content">
+						<form action="#">
+						<div class="form-group">
+							<label for="username">用户名</label>
+						<input type="text" class="username" id="username">
+						</div> 
+						<div class="form-group">
+							<label for="password">密码</label>
+						<input type="password" class="password" id='password'>
+						</div>
+						</form>
+					</div>
+					<div id="log-bottom">
+						<button class="common">close</button>
+						<button type="submit" class="important">提交</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- js文件导包 -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="../node_modules/swiper/dist/js/swiper.js"></script>
+<script src="../node_modules/echarts/dist/echarts.js"></script>
+<script src="js/index.js"></script>
+<script> 
+//自定义echarts图表
+	 function draw() {
+       $('#echarts').attr('data-run','false');
+        var mychart = echarts.init(document.getElementById('echarts'));
+        // 指定图表的配置项和数据
+        option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                left: 'center',
+                bottom: '10%',
+                data: ['直接登录', '营销广告', '搜索引擎', '邮件营销', '联盟广告', '视频广告', '百度', '谷歌', '必应', '其他']
+            },
+            series: [{
+                animationDuration:2500,
+                animationType: 'scale',
+                animationEasing: 'elasticOut',
+                name: '访问来源',
+                type: 'pie',
+                selectedMode: 'single',
+                radius: [0, '30%'],
+                center: ["center", "45%"],
+
+                label: {
+                    normal: {
+                        position: 'inner'
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: [{
+                    value: 335,
+                    name: '直接登录',
+                    selected: true
+                }, {
+                    value: 679,
+                    name: '营销广告'
+                }, {
+                    value: 1548,
+                    name: '搜索引擎'
+                }]
+            }, {
+                animationDuration:2500,
+                name: '访问来源',
+                type: 'pie',
+                radius: ['40%', '55%'],
+                center: ["center", "45%"],
+
+                data: [{
+                    value: 335,
+                    name: '直接登录'
+                }, {
+                    value: 310,
+                    name: '邮件营销'
+                }, {
+                    value: 234,
+                    name: '联盟广告'
+                }, {
+                    value: 135,
+                    name: '视频广告'
+                }, {
+                    value: 1048,
+                    name: '百度'
+                }, {
+                    value: 251,
+                    name: '谷歌'
+                }, {
+                    value: 147,
+                    name: '必应'
+                }, {
+                    value: 102,
+                    name: '其他'
+                }]
+            }]
+        };
+        mychart.setOption(option);//实例化
+    }
+</script>
